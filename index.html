@@ -5,46 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bath Fittings Store</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-
-    .modal[aria-hidden="false"] {
-      display: flex;
-    }
-
-    .modal-content {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      width: 90%;
-      position: relative;
-      text-align: center;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 10px; right: 10px;
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .modal-content img {
-      max-width: 100%;
-      margin-bottom: 15px;
-    }
-  </style>
 </head>
 <body>
 
@@ -68,19 +28,35 @@
   <section class="products" id="products">
     <h2>Our Products</h2>
     <div class="product-grid">
-      <div class="product fade-in" data-id="1" data-name="Faucet Model A" data-desc="Sleek and durable faucet perfect for modern bathrooms." data-price="$120" data-img="product1.jpg">
+      <div class="product fade-in" 
+           data-name="Faucet Model A" 
+           data-desc="Sleek and durable faucet perfect for modern bathrooms." 
+           data-price="$120" 
+           data-img="product1.jpg">
         <img src="product1.jpg" alt="Faucet Model A" />
         <p>Faucet Model A</p>
       </div>
-      <div class="product fade-in" data-id="2" data-name="Shower Head B" data-desc="Rainfall shower head with adjustable settings." data-price="$85" data-img="product2.jpg">
+      <div class="product fade-in" 
+           data-name="Shower Head B" 
+           data-desc="Rainfall shower head with adjustable settings." 
+           data-price="$85" 
+           data-img="product2.jpg">
         <img src="product2.jpg" alt="Shower Head B" />
         <p>Shower Head B</p>
       </div>
-      <div class="product fade-in" data-id="3" data-name="Bathtub Faucet C" data-desc="Elegant bathtub faucet with temperature control." data-price="$150" data-img="product3.jpg">
+      <div class="product fade-in" 
+           data-name="Bathtub Faucet C" 
+           data-desc="Elegant bathtub faucet with temperature control." 
+           data-price="$150" 
+           data-img="product3.jpg">
         <img src="product3.jpg" alt="Bathtub Faucet C" />
         <p>Bathtub Faucet C</p>
       </div>
-      <div class="product fade-in" data-id="4" data-name="Sink Mixer D" data-desc="Compact sink mixer with easy installation." data-price="$95" data-img="product4.jpg">
+      <div class="product fade-in" 
+           data-name="Sink Mixer D" 
+           data-desc="Compact sink mixer with easy installation." 
+           data-price="$95" 
+           data-img="product4.jpg">
         <img src="product4.jpg" alt="Sink Mixer D" />
         <p>Sink Mixer D</p>
       </div>
@@ -142,9 +118,12 @@
 
     const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('show');
-        appearOnScroll.unobserve(entry.target);
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          entry.target.classList.add('show');
+          appearOnScroll.unobserve(entry.target);
+        }
       });
     }, appearOptions);
 
@@ -158,7 +137,6 @@
     const modalImg = document.getElementById('modal-img');
     const modalDesc = document.getElementById('modal-desc');
     const modalPrice = document.getElementById('modal-price');
-    const addToCartBtn = document.getElementById('add-to-cart');
     const closeModalBtn = modal.querySelector('.modal-close');
 
     document.querySelectorAll('.product').forEach(product => {
@@ -189,6 +167,5 @@
       }
     });
   </script>
-
 </body>
 </html>

@@ -5,6 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bath Fittings Store</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal[aria-hidden="false"] {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
 
@@ -28,19 +68,19 @@
   <section class="products" id="products">
     <h2>Our Products</h2>
     <div class="product-grid">
-      <div class="product fade-in">
+      <div class="product fade-in" data-id="1" data-name="Faucet Model A" data-desc="Sleek and durable faucet perfect for modern bathrooms." data-price="$120" data-img="product1.jpg">
         <img src="product1.jpg" alt="Faucet Model A" />
         <p>Faucet Model A</p>
       </div>
-      <div class="product fade-in">
+      <div class="product fade-in" data-id="2" data-name="Shower Head B" data-desc="Rainfall shower head with adjustable settings." data-price="$85" data-img="product2.jpg">
         <img src="product2.jpg" alt="Shower Head B" />
         <p>Shower Head B</p>
       </div>
-      <div class="product fade-in">
+      <div class="product fade-in" data-id="3" data-name="Bathtub Faucet C" data-desc="Elegant bathtub faucet with temperature control." data-price="$150" data-img="product3.jpg">
         <img src="product3.jpg" alt="Bathtub Faucet C" />
         <p>Bathtub Faucet C</p>
       </div>
-      <div class="product fade-in">
+      <div class="product fade-in" data-id="4" data-name="Sink Mixer D" data-desc="Compact sink mixer with easy installation." data-price="$95" data-img="product4.jpg">
         <img src="product4.jpg" alt="Sink Mixer D" />
         <p>Sink Mixer D</p>
       </div>
@@ -63,6 +103,18 @@
   </footer>
 
   <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- Product Details Modal -->
+  <div id="product-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" tabindex="-1">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h3 id="modal-title"></h3>
+      <img src="" alt="" id="modal-img" />
+      <p id="modal-desc"></p>
+      <p id="modal-price"></p>
+      <button id="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
 
   <script>
     // Back to Top button
@@ -98,6 +150,43 @@
 
     faders.forEach(fader => {
       appearOnScroll.observe(fader);
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('product-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImg = document.getElementById('modal-img');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalPrice = document.getElementById('modal-price');
+    const addToCartBtn = document.getElementById('add-to-cart');
+    const closeModalBtn = modal.querySelector('.modal-close');
+
+    document.querySelectorAll('.product').forEach(product => {
+      product.addEventListener('click', () => {
+        modalTitle.textContent = product.dataset.name;
+        modalImg.src = product.dataset.img;
+        modalImg.alt = product.dataset.name;
+        modalDesc.textContent = product.dataset.desc;
+        modalPrice.textContent = product.dataset.price;
+        modal.setAttribute('aria-hidden', 'false');
+        modal.focus();
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape" && modal.getAttribute('aria-hidden') === 'false') {
+        modal.setAttribute('aria-hidden', 'true');
+      }
     });
   </script>
 

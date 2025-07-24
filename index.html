@@ -4,29 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elegant Bath Fittings</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="images/logo.png" type="image/png">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
-<body>
+<body id="home">
 
+  <!-- Header -->
   <header>
     <div class="container">
-      <img src="images/logo.png" alt="Logo" class="logo">
+      <img src="images/logo.png" alt="Logo" class="logo" />
       <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
     <h1>Modern Bath Fittings</h1>
     <p>Style & Function. Perfectly Combined.</p>
   </section>
 
-  <section class="products">
+  <!-- Product Section -->
+  <section class="products" id="products">
     <h2>Our Products</h2>
     <div class="product-grid">
       <div class="product">
@@ -37,13 +45,55 @@
         <img src="images/product2.jpg" alt="Modern Shower">
         <p>Modern Shower</p>
       </div>
-      <!-- Add more products here -->
+      <div class="product">
+        <img src="images/product3.jpg" alt="Wall Mixer">
+        <p>Wall Mixer</p>
+      </div>
+      <div class="product">
+        <img src="images/product4.jpg" alt="Rain Shower">
+        <p>Rain Shower</p>
+      </div>
     </div>
   </section>
 
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        We specialize in premium bath fittings that blend design, durability, and efficiency. With over 10 years in the industry, our mission is to bring luxury and elegance to every bathroom space.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Email: info@bathfittings.com</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Location: Mumbai, India</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Elegant Bath Fittings. All rights reserved.</p>
   </footer>
 
+  <!-- Back to Top -->
+  <a href="#home" class="back-to-top">↑</a>
+
+  <!-- Minimal JS for Back-to-Top Button -->
+  <script>
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+  </script>
 </body>
 </html>
